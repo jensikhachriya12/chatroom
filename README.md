@@ -15,6 +15,7 @@ Database Storage → Messages are saved for record-keeping.
 
 Live Updates → New messages appear in real time without refreshing the page.
 
+
 FRAMEWORK:
 
 Use web frameworks like Django to create a web-based chat application.
@@ -52,6 +53,7 @@ o	User Management: Users can be authenticated and managed within the chat applic
 •	Django installation Steps: 
 
 Step 1: Install Python:
+
 •	python –version
 
 Step 2: Create a Virtual Environment:
