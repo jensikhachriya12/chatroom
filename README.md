@@ -63,18 +63,23 @@ Step 2: Create a Virtual Environment:
 •	myenv\Scripts\activate
 
 Step 3: Install Django:
+
 •	pip install django  
 
 Step 4: Verify Django Installation:
+
 •	django-admin --version  
 
 Step 5: Create a Django Project:
+
 •	django-admin startproject myproject  
 
 Step 6: Run the Development Server:
+
 •	python/py manage.py runserver
 
 Setp 7: Succesfull Django install:
+
 •	Open a web browser and go to http://127.0.0.1:8000/ to see your Django project running
 
 
