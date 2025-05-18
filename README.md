@@ -1,4 +1,4 @@
-chatroom:
+CHATROOM:
 
 A chat room is an online platform where multiple users can communicate with each other in real-time. 
 In a Python-based real-time chat application, messages are sent and received instantly, allowing seamless interaction between users.
