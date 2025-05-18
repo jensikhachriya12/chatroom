@@ -1,4 +1,4 @@
-chatroom:
+CHATROOM:
 
 
 A chat room is an online platform where multiple users can communicate with each other in real-time. 
@@ -16,6 +16,7 @@ Real-Time Messaging → Messages are instantly sent and displayed.
 Database Storage → Messages are saved for record-keeping.
 
 Live Updates → New messages appear in real time without refreshing the page.
+
 
 
 FRAMEWORK:
@@ -51,6 +52,8 @@ o	Real-Time Messaging: Users can send and receive messages instantly due to the 
 o	Multiple Rooms: Users can join different chat rooms, each with its own set of participants and messages.
 
 o	User Management: Users can be authenticated and managed within the chat application, allowing for features like private messaging and moderation.
+
+
 
    
 •	Django installation Steps: 
