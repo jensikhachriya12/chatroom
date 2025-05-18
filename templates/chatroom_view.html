@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Discussion</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+  {% comment %} <link rel="stylesheet" href="{% static 'style.css' %}"> {% endcomment %}
+</head>
+<body>
+  <div class="container mt-5">
+    <div class="row">
+      <section class="col-12 bg-white">
+        <!-- Background Image Section -->
+        <div class="photo mb-4" style="background-image: url(https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&amp;ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1050&amp;q=80);">
+        </div>
+        
+        <!-- Loop Through Chat Messages -->
+        {% for view in chatview_obj %}
+        <div class="mb-4">
+          <!-- User Info & Message -->
+          <div class="desc-contact p-3 mb-3" style="border: 1px solid #ddd; border-radius: 8px;">
+            <p class="font-weight-bold" style="font-size: 0.8em;">
+              {{view.client_id.user_id.first_name}} {{view.client_id.user_id.last_name}}
+            </p>
+            <div class="" style="font-size: 1em; line-height: 1.5;">
+             <h4>{{view.message}}</h4>
+            </div>
+            <div class="date text-muted mt-2" style="font-size: 0.9em;">
+              {{view.create_Date|date:"Y-m-d"}}
+            </div>
+          </div>
+
+
+        </div>
+        {% endfor %}
+      </section>
+    </div>
+  </div>
+  
+  <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
+{% endblock %}

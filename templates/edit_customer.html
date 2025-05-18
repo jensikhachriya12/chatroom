@@ -1,0 +1,89 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit customer</title>
+
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Edit Customer</h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form action="{% url 'edit_customer' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{ed1_customer.id}}">
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Firstname</label>
+                  <input type="text" name="firstname" class="form-control" id="exampleInputFirstname" value="{{ed1_customer.user_id.first_name}}" placeholder="Enter your First name">
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputPassword1">Lastname</label>
+                  <input type="text" name="lastname" class="form-control" id="exampleInputLastname" value="{{ed1_customer.user_id.last_name}}" placeholder="Enter your Lastname">
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Username</label>
+                    <input type="text" name="username" class="form-control" id="exampleInputUsername" value="{{ed1_customer.user_id.username}}" placeholder="Enter your Username">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="password" class="form-control" id="exampleInputPassword" placeholder="Enter your Password"
+                    pattern="^[0-9]{6}$" minlength="6" maxlength="6">
+                  </div>
+  
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Mobile No</label>
+                    <input type="text" name="mobile no" class="form-control" id="exampleInputMobileNo" value="{{ed1_customer.mobile_no}}" placeholder="Enter your Mobile no"
+                     pattern="^[0-9]{10}$" maxlength="10" minlength="10" required title="Mobile number must be exactly 10 digits">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Email</label>
+                    <input type="text" name="email" class="form-control" id="exampleInputEmail" value="{{ed1_customer.user_id.email}}" placeholder="Enter your Email"
+                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" minlength="5" maxlength="50" required>
+                  </div>
+                
+                  <div class="form-group">
+                    <label for="exampleInputstatus">Status</label>
+                    <select class="form-select" aria-label="Default select example" name="status" id="status">
+                      <option value="">select Status</option>
+                      <option value="active" {% if ed1_customer.status == 'active' %} selected{% endif %}>Active</option>
+                      <option value="inactive" {% if ed1_customer.status == 'inactive' %} selected {% endif %}>Inactive</option>
+                    </select>
+                  </div>
+              </div> 
+               <!-- /.card-body  -->
+              <div class="card-footer">
+                <button type="update" class="btn btn-primary">update</button>
+              </div>
+            </form>
+          </div>
+          <!-- /.card -->
+          </div>
+        <!--/.col (left) -->
+        <!-- right column -->
+        <div class="col-md-6">
+
+        </div>
+        <!--/.col (right) -->
+      </div>
+      <!-- /.row -->
+    </div><!-- /.container-fluid -->
+  </section>
+
+</body>
+</html>
+{% endblock %}

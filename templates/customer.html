@@ -1,0 +1,116 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Table</title>
+
+    <style>
+        body {
+          font-family: Verdana, Geneva, Tahoma, sans-serif;
+            margin: 0;
+            padding: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse; 
+            margin-top: 20px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 12px;
+            border: 1px solid #ddd; 
+        }
+
+        th {
+            background-color: #e5b4c6; 
+            color: rgb(15, 1, 1); 
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #0a0000;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+<a href="{% url 'add_customer' %}"><button class="btn-primary float-right">Add New</button></a>
+
+<body>
+    <div class="card-body">
+
+        <table id="example2" class="table table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Sr No.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Username</th>
+            <th>Password</th>
+            <th>Mobile No</th>
+            <th>Email</th>
+            <th>status</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+          
+          <tbody>
+            
+            {%  for data  in customer_obj %}
+          <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{data.user_id.first_name}}</td>
+            <td>{{data.user_id.last_name}}</td>
+            <td>{{data.user_id.username}}</td>
+            <td>{{data.user_id.chek.password}}</td>
+            <td>{{data.mobile_no}}</td>
+            <td>{{data.user_id.email}}</td>
+            <td>{{data.status}}</td>
+            <td>{{data.action}}
+              <a href="{% url 'get_customer' data.id %}"><i class="far fa-edit"></i></a>
+              <a href="{% url 'delete_customer' data.id %}"><i class="fas fa-trash-alt"></i></a>
+
+            </td>
+          </tr>
+         {% endfor %}
+          </tbody>  
+          <tfoot>
+          </tfoot>  
+          
+      
+        </table>
+      </div>
+        
+      <div class="dataTables_paginate paging_simple_numbers" id="example2_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="example2_previous"><a href="#" aria-controls="example2" data-dt-idx="0" tabindex="0" class="page-link">Previous</a></li>
+        <li class="paginate_button page-item active"><a href="#" aria-controls="example2" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="2" tabindex="0" class="page-link">2</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="3" tabindex="0" class="page-link">3</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="4" tabindex="0" class="page-link">4</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="5" tabindex="0" class="page-link">5</a></li>
+        <li class="paginate_button page-item "><a href="#" aria-controls="example2" data-dt-idx="6" tabindex="0" class="page-link">6</a></li>
+        <li class="paginate_button page-item next" id="example2_next"><a href="#" aria-controls="example2" data-dt-idx="7" tabindex="0" class="page-link">Next</a></li></ul>
+      </div>  
+   
+</body>
+</html>
+{% endblock %}

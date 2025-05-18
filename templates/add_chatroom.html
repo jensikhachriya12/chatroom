@@ -1,0 +1,48 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add chatroom </h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form id="quickForm" action="{% url 'add_chatroom' %}" method="post">
+              {% csrf_token %}
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputTitle">Title</label>
+                  <input type="title" name="title" class="form-control" id="exampleInputtitle" placeholder="Enter your title ">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputvalid_till">Valid_till</label>
+                  <input type="date" name="valid_till" class="form-control" id="exampleInputvalid_till" placeholder="Enter your Date">
+                </div>
+
+
+                <div class="form-group">
+                  <label for="exampleInputdescription">Description</label>
+                  <input type="description" name="description" class="form-control" id="exampleInputdescription" placeholder="Enter your description">
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+              <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </section>
+        {% endblock %}  

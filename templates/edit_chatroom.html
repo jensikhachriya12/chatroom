@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+
+<section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <!-- left column -->
+        <div class="col-md-12">
+          <!-- jquery validation -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Add chatroom </h3>
+            </div>
+            <!-- /.card-header -->
+            <!-- form start -->
+            <form id="quickForm" action="{% url 'edit_chatroom' %}" method="post">
+              {% csrf_token %}
+              <input type="hidden" name="id" value="{{edchat1_obj.id}}">
+
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputTitle">Title</label>
+                  <input type="title" name="title" class="form-control" id="exampleInputtitle" value="{{edchat1_obj.title}}" placeholder="Enter your title ">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputvalid_till">Valid_till</label>
+                  <input type="date" name="valid_till" class="form-control" id="exampleInputvalid_till" value="{{edchat1_obj.valid_till|date:'Y-m-d'}}" placeholder="Enter your Date">
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleInputdescription">Description</label>
+                  <input type="description" name="description" class="form-control" id="exampleInputdescription" value="{{edchat1_obj.description}}" placeholder="Enter your description">
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-md-6">
+
+              </div>
+              <!--/.col (right) -->
+            </div>
+            <!-- /.row -->
+          </div><!-- /.container-fluid -->
+        </section>
+        {% endblock %}  

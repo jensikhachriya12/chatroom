@@ -1,0 +1,78 @@
+{% load static %}
+
+<aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="{% static 'dist/img/chat2.png' %}" alt="AdminLTE Logo" height="100px" width="100px" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">CHATROOM</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <!--  -->
+
+      <!-- SidebarSearch Form -->
+      
+      <!-- Sidebar Menu -->
+       <!-- Sidebar Menu -->
+       <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+        {% if is_customer == False %}
+          <li class="nav-item m-1">
+            <a href="{% url 'customer' %}"  class="nav-link">
+              {% csrf_token %}
+               <i class="far fa-user"></i>
+              <p>
+                customers
+              </p>
+            </a>
+          </li>
+          {% endif %}
+
+          {% comment %} {% if is_customer == False %} {% endcomment %}
+          <li class="nav-item m-1">
+            <a href="{% url 'chatroom'%}"  class="nav-link">
+              {% csrf_token %}
+                <i class="fas fa-comments "></i>
+                     <p>
+                chatroom
+              </p>
+            </a>
+          </li>
+          {% comment %} {% endif %} {% endcomment %}
+         
+
+        
+          <li class="nav-item m-1">
+            <a {% if is_customer == False %}href="{% url 'edit_profile'%}" {% else %} href="{% url 'edit_customer_profile'%}" {% endif %} class="nav-link">
+            {% csrf_token %}
+              <i class="far fa-address-card"></i>
+              <p>
+                Profile
+              </p>
+            </a>
+          </li>
+
+          
+          <li class="nav-item m-1">
+           <a href="{% url 'logout' %}"  class="nav-link">
+                {% csrf_token %}   
+               <i class="fas fa-sign-out-alt"></i>
+
+              <p>
+                Logout
+              </p>
+            </a>
+          </li>
+ 
+
+            
+            </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>

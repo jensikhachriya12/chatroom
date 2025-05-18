@@ -1,0 +1,118 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Log in</title>
+
+  <!-- Google Font: Source Sans Pro -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="{% static 'plugins/fontawesome-free/css/all.min.css' %}">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="{% static 'plugins/icheck-bootstrap/icheck-bootstrap.min.css '%}">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css '%}">
+  <style>
+    .alert-container {
+    margin: 25px;
+    color: rgb(187, 14, 14);
+    padding: 10px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    color: rgb(251, 251, 247);
+}
+
+.alert-error {
+    background-color: #f44336;
+    color: rgb(247, 236, 236);
+}
+
+.alert-info {
+    background-color: #2196F3;
+    color: rgb(237, 235, 235);
+}
+
+.alert-warning {
+    background-color: #ff9800;
+    color: rgb(243, 235, 235);
+}
+
+  </style>
+</head>
+<body class="hold-transition login-page">
+<div class="login-box">
+  <div class="login-logo">
+    <a href=""><b>CHATROOM</b></a>
+  </div>
+  <!-- /.login-logo -->
+  
+  <div class="card">
+    <div class="card-body login-card-body">
+      <p class="login-box-msg"><b>Login</b></p>
+      {% if messages %}
+      <div class="alert-container">
+        {% for messages in messages %}
+        <div class="alert-alert-{{messages.tags}}">
+          {{messages}}
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <form action="{% url 'logins' %}" method="post">
+          {% csrf_token %}
+        <div class="input-group mb-3">
+          <input type="text" class="form-control" placeholder="Username" name="username">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-4">
+          <input type="password" class="form-control" placeholder="Password" name="password">
+          <div class="input-group-append">
+            <div class="input-group-text">
+              
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-8">
+            
+          </div>
+          <!-- /.col -->
+          <div class="col-12">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+          </div>
+          <!-- /.col -->
+        </div>
+  
+      </form>
+
+      <!-- /.social-auth-links -->
+
+      
+    <!-- /.login-card-body -->
+  </div>
+</div>
+<!-- /.login-box -->
+
+<!-- jQuery -->
+<script src="{% static '../../plugins/jquery/jquery.min.js '%}"></script>
+<!-- Bootstrap 4 -->
+<script src="{% static '../../plugins/bootstrap/js/bootstrap.bundle.min.js '%}"></script>
+<!-- AdminLTE App -->
+<script src="{% static '../../dist/js/adminlte.min.js '%}"></script>
+</body>
+</html>

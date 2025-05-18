@@ -1,0 +1,292 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title> WhatsApp</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEJr8t7g7Ht0xjRAy+u6O6zT5mdoDQcf/vtX6l5/VtxRvw+dWpf6k6cBvHNo6" crossorigin="anonymous">
+  
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    /* Ensure the chat container fills the screen and is scrollable */
+    html, body {
+      height: 100%;
+    }
+
+    .container-fluid {
+      height: 100%;
+      padding: 0;
+      margin: 0;
+    }
+
+    .app {
+      height: 100vh; /* Set height to full viewport height */
+      display: flex;
+      flex-direction: column;
+    }
+
+    .side-one {
+      flex: 1; /* Take remaining space */
+      overflow-y: auto; /* Make the messages scrollable */
+      padding-right: 10px; /* Optional: to add some space for the scrollbar */
+      margin-bottom: 80px; /* Add space at the bottom for the reply box */
+    }
+
+    .message-time {
+      margin: 0 !important;
+      margin-left: 50px !important;
+      font-size: 12px;
+      text-align: right;
+      position: relative;
+      color: rgb(16, 2, 2);
+    }
+
+    .text-muted {
+      color: rgb(1, 7, 12) !important;
+    }
+
+    .postions {
+      padding: 1rem !important;
+      position: fixed;
+    }
+
+    .color {
+      background-color: rgb(255, 255, 255);
+    }
+
+    .row {
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    /* Hide the default text inside the file input */
+    input[type="file"] {
+      opacity: 0; /* Make the file input invisible */
+      width: 0;
+      height: 0;
+      position: absolute; /* Remove from layout */
+    }
+
+    /* Style the label to display the cloud upload icon */
+    .upload-icon {
+      display: inline-block;
+      font-size: 40px; /* Adjust the size of the icon */
+      cursor: pointer; /* Show pointer cursor on hover */
+      color: rgb(15, 16, 16); /* Set a color for the icon */
+    }
+
+    /* Optional: Change the color of the icon when hovering */
+    .upload-icon:hover {
+      color: rgb(246, 136, 136);
+    }
+
+    .message-text {
+      font-size: 13px;
+      color: rgb(0, 4, 7)
+    }
+
+    .message_box {
+      height: 110px;
+      width: 280px;
+    }
+
+    /* Reply Box fixed at the bottom */
+    .reply-box {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      height: 60px; /* Set a fixed height for the reply box */
+      padding: 1rem;
+      margin-left: -25px;
+      background-color: white;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .reply-main textarea {
+      resize: none;
+      width: 100%;
+      border-radius: 10px;
+      height: 35px;
+      border: 1px solid #ddd;
+    }
+
+    .ma {
+      margin-top: 6px !important
+    }
+
+    .reply-recording, .reply-send {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    /* Add some spacing for the message container so it's not covered by the reply box */
+    .side-one {
+      padding-bottom: 60px;
+    }
+
+    /* Ensure the image fits the message box properly */
+    .attachment-image {
+      max-width: 280px; /* Ensures the image will not exceed the box width */
+      max-height: 280px; /* Ensures the image will not exceed the box height */
+      object-fit: contain; /* Maintains aspect ratio and fits within the box */
+    }
+
+    /* WhatsApp-like style for received messages (light green) */
+    .receiver {
+      background-color: #DCF8C6; /* Light green background for received messages */
+      color: #333; /* Dark text for readability */
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+      margin-bottom: 10px;
+    }
+
+    /* WhatsApp-like style for sent messages (darker green) */
+    .sender {
+      background-color:rgb(154, 217, 244); /* Darker greenish-blue background for sent messages */
+      color: #fff; /* White text for better contrast */
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+      margin-bottom: 10px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container-fluid app color">
+    <div class="row app-one">
+      <!-- Sidebar -->
+      <div class="col-12">
+        <div class="side-one">
+
+          <!-- Messages -->
+          {% for chat in chat_obj %}
+            {% if chat.client_id.user_id.id != user.id %}
+              {% if chat.attechment %}
+                {% if chat.attechment.url|lower|slice:"-4:" == ".pdf"%}
+                  <!-- Display PDF file -->
+                  <div class="row message-body justify-content-start ma">
+                    <div class="col-12 message-main-receiver mb-2">
+                      <div class="d-flex align-items-center">
+                        <a href="{{ chat.attechment.url }}" target="_blank" class="btn btn-outline-secondary">
+                          <i class="fa fa-file-pdf"></i> View PDF
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  <!-- Display Image attachment -->
+                  <div class="row message-body justify-content-start ma">
+                    <div class="col-12 message-main-receiver mb-2">
+                      <div class="d-flex align-items-center">
+                        <img src="{{ chat.attechment.url }}" alt="Attachment" class="attachment-image">
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+              <!-- Message Text -->
+              <div class="row message-body justify-content-start ma">
+                <div class="col-12 message-main-receiver">
+                  <div class="d-flex align-items-center">
+                    <div class="receiver message_box">
+                      <div class="message-text">
+                        <p><strong>{{ chat.client_id.user_id.first_name }} {{ chat.client_id.user_id.last_name }}</strong></p>
+                        <h4><p>{{ chat.message }}</p></h4>
+                      </div>
+                      <span class="message-time float-end text-muted">
+                        {{ chat.create_Date }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% else %}
+              {% if chat.attechment %}
+                {% if chat.attechment.url|lower|slice:"-4:" == ".pdf" %}
+                  <!-- Display PDF file for sender -->
+                  <div class="row message-body justify-content-end ma">
+                    <div class="col-12 message-main-sender">
+                      <div class="d-flex align-items-center justify-content-end mb-2">
+                        <a href="{{ chat.attechment.url }}" target="_blank" class="btn btn-outline-secondary">
+                          <i class="fa fa-file-pdf"></i> View PDF
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  <!-- Display Image attachment for sender -->
+                  <div class="row message-body justify-content-end ma mb-2">
+                    <div class="col-12 message-main-sender">
+                      <div class="d-flex align-items-center justify-content-end mb-2">
+                        <img src="{{ chat.attechment.url }}" alt="Attachment" class="attachment-image">
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+              {% endif %}
+              <!-- Message Text -->
+              <div class="row message-body justify-content-end ma mb-2">
+                <div class="col-12 message-main-sender">
+                  <div class="d-flex align-items-center justify-content-end mb-2">
+                    <div class="sender message_box">
+                      <div class="message-text">
+                        <h4><p>{{ chat.message }}</p></h4>
+                      </div>
+                      <span class="message-time float-end text-muted">
+                        {{ chat.create_Date }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <!-- Reply Box fixed at the bottom -->
+        <form action="{% url 'add_new_chat' %}" method="POST" enctype="multipart/form-data">
+          {% csrf_token %}
+          <input type="hidden" name="chatroom_id" value="{{chatroom_obj.id}}">
+          <div class="reply-box">
+            <div class="row">
+              <div class="col-5 reply-main">
+                <textarea class="form-control" rows="1" id="message" name="message" placeholder="Type a message...."></textarea>
+              </div>
+              <div class="col-1 reply-recording d-flex align-items-center justify-content-between">
+                <!-- Microphone icon -->
+                <i class="fa fa-microphone fa-lg" style="margin-right: 10px;"></i>
+
+                <!-- File input -->
+                <input class="file-input" type="file" id="fileInput" name="doc" style="margin-right: 10px;" />
+
+                <!-- Upload icon -->
+                <label for="fileInput" class="upload-icon d-block" style="margin-right: 10px;">
+                  <i class="icon ion-ios-cloud-upload"></i>
+                </label>
+
+                <!-- Send icon -->
+                <button class="btn reply-send" type="submit" style="background-color: transparent;">
+                  <i class="fa fa-paper-plane fa-lg" style="color:rgb(0, 0, 0);"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+{% endblock %}
