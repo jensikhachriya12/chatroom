@@ -1,9 +1,7 @@
-CHATROOM:
-
+chatroom:
 
 A chat room is an online platform where multiple users can communicate with each other in real-time. 
 In a Python-based real-time chat application, messages are sent and received instantly, allowing seamless interaction between users.
-
 
 WORK:
 
@@ -17,13 +15,8 @@ Database Storage → Messages are saved for record-keeping.
 
 Live Updates → New messages appear in real time without refreshing the page.
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 41a8e926e6ceb1f7e127ccc3196cd76335fc7af1
 FRAMEWORK:
-
 
 Use web frameworks like Django to create a web-based chat application.
 These frameworks allow you to build web applications where users can interact through a web interface.
@@ -46,7 +39,6 @@ LIBRARIES:
 
 6.	Django ORM for Databases(django.db.models): Used to define database models in Django.
 
-
 FEATURES:
 
 o	User authentication: User authentication is a crucial part of a chatroom application to ensure that only registered users can join and participate in conversations.
@@ -57,12 +49,6 @@ o	Multiple Rooms: Users can join different chat rooms, each with its own set of 
 
 o	User Management: Users can be authenticated and managed within the chat application, allowing for features like private messaging and moderation.
 
-<<<<<<< HEAD
- 
-=======
-
-
->>>>>>> 41a8e926e6ceb1f7e127ccc3196cd76335fc7af1
    
 •	Django installation Steps: 
 
