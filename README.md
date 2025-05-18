@@ -1,7 +1,9 @@
 chatroom:
-<br>
+
+
 A chat room is an online platform where multiple users can communicate with each other in real-time. 
 In a Python-based real-time chat application, messages are sent and received instantly, allowing seamless interaction between users.
+
 
 WORK:
 
@@ -17,6 +19,7 @@ Live Updates → New messages appear in real time without refreshing the page.
 
 
 FRAMEWORK:
+
 
 Use web frameworks like Django to create a web-based chat application.
 These frameworks allow you to build web applications where users can interact through a web interface.
