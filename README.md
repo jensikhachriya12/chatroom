@@ -59,6 +59,7 @@ Step 1: Install Python:
 Step 2: Create a Virtual Environment:
 	
 •	python/py -m venv myenv
+
 •	myenv\Scripts\activate
 
 Step 3: Install Django:
