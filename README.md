@@ -22,6 +22,7 @@ Use web frameworks like Django to create a web-based chat application.
 These frameworks allow you to build web applications where users can interact through a web interface.
 
 LIBRARIES: 
+
 1.	Django Authentication(django.contrib.auth): Manages user authentication (login, logout, user registration). 
 
 2.	 Messages Framework( django.contrib.messages): Provides a way to display temporary messages to users.
@@ -48,6 +49,7 @@ o	Real-Time Messaging: Users can send and receive messages instantly due to the 
 o	Multiple Rooms: Users can join different chat rooms, each with its own set of participants and messages.
 
 o	User Management: Users can be authenticated and managed within the chat application, allowing for features like private messaging and moderation.
+
 
    
 •	Django installation Steps: 
