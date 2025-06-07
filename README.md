@@ -5,7 +5,7 @@ In a Python-based real-time chat application, messages are sent and received ins
 
 WORK:
 
-User Logs In → Authenticated users can access chatrooms.
+User Log In → Authenticated users can access chatrooms.
 
 Chatroom Selection → Users choose a chatroom or start a private conversation.
 
